@@ -1,0 +1,41 @@
+# Dependencies
+node_modules
+
+# Hardhat
+cache
+artifacts
+
+# Environment
+.env
+.env.local
+.env.example
+
+# Git
+.git
+.github
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docs
+README.md
+BASE_DEPLOYMENT.md
+*.md
+
+# Test
+test
+test-*
+*.test.js
+
+# Scripts not needed for production
+scripts/hardhat
+scripts/deploy*.js
+scripts/estimate*.js
+scripts/check*.js

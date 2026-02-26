@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/server.js"
+    }
+  ],
+  "env": {
+    "VOTING_CONTRACT_ADDRESS": "0xa335dF4691c4Db8389D311963Cb57Ddd747924C9",
+    "RPC_URL": "https://mainnet.base.org"
+  }
+}

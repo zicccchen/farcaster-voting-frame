@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>链上投票 Frame</title>
+
+    <!-- Base App -->
+    <meta name="base:app_id" content="699fb26232f0feeaa21ef950" />
+
+    <!-- Farcaster Frame 元标签 -->
+    <meta property="fc:frame" content="vNext" />
+    <meta property="fc:frame:image" content="${FRAME_URL}/api/og?proposalId=${proposalId}"/>
+    <meta property="fc:frame:post_url" content="${FRAME_URL}/api/vote"/>
+
+    <!-- 按钮配置 -->
+    <meta property="fc:frame:button:1" content="👍 赞成" />
+    <meta property="fc:frame:button:1:action" content="post" />
+
+    <meta property="fc:frame:button:2" content="👎 反对" />
+    <meta property="fc:frame:button:2:action" content="post" />
+
+    <meta property="fc:frame:button:3" content="📊 查看结果" />
+    <meta property="fc:frame:button:3:action" content="post" />
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .proposal-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .proposal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .proposal-desc {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .vote-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-yes {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-no {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-view {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .stat-yes { color: #10b981; }
+        .stat-no { color: #ef4444; }
+
+        .time-remaining {
+            text-align: center;
+            color: #666;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .badge-active {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-ended {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗳️ 链上投票</h1>
+        <p class="subtitle">基于 Farcaster Frame 的去中心化投票系统</p>
+
+        <div class="proposal-card">
+            <span class="badge badge-active">进行中</span>
+            <div class="proposal-title">${proposalTitle}</div>
+            <div class="proposal-desc">${proposalDesc}</div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-label">赞成票</div>
+                    <div class="stat-value stat-yes">${yesVotes}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">反对票</div>
+                    <div class="stat-value stat-no">${noVotes}</div>
+                </div>
+            </div>
+
+            <div class="time-remaining">
+                ⏰ 剩余时间: ${remainingTime}
+            </div>
+
+            <div class="vote-buttons">
+                <button class="btn btn-yes">👍 赞成</button>
+                <button class="btn btn-no">👎 反对</button>
+                <button class="btn btn-view">📊 查看结果</button>
+            </div>
+        </div>
+
+        <p style="text-align: center; color: #999; font-size: 12px;">
+            在 Farcaster 中查看此 Frame 进行投票
+        </p>
+    </div>
+
+    <script>
+        // 动态加载提案数据
+        const proposalId = ${proposalId};
+
+        fetch('/api/proposal?id=' + proposalId)
+            .then(res => res.json())
+            .then(data => {
+                document.querySelector('.proposal-title').textContent = data.title;
+                document.querySelector('.proposal-desc').textContent = data.description;
+                document.querySelector('.stat-yes').textContent = data.yesVotes;
+                document.querySelector('.stat-no').textContent = data.noVotes;
+            })
+            .catch(err => console.error('加载失败:', err));
+    </script>
+
+    <script type="module">
+      import { sdk } from 'https://esm.sh/@farcaster/miniapp-sdk';
+
+      window.addEventListener("load", async () => {
+        try {
+          await sdk.actions.ready();
+          console.log("Mini app ready signal sent");
+        } catch (e) {
+          console.log("Not in mini app context, skipping ready()");
+        }
+      });
+    </script>
+</body>
+</html>

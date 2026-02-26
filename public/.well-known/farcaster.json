@@ -1,0 +1,33 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjExMTM1NzUsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgxNkY4YUMwMzVFZUE2M0I1ODQxNjI1MUU5RTYyMURhRDU0MDQxMzQ0In0",
+    "payload": "eyJkb21haW4iOiJmYXJjYXN0ZXItdm90aW5nLWZyYW1lLnZlcmNlbC5hcHAifQ",
+    "signature": "cWd3L69/8XRp8ZmzSV16UHo5A4RxCJKi6tLqYBMj5+9OYTJrLBGXk4vNGNEV6zoLZ+Su/6xqFK9dlVsAApnqshs="
+  },
+ "frame": {
+    "version": "1",
+    "name": "Base Voting Frame",
+    "subtitle": "Decentralized onchain voting",
+    "description": "A simple and transparent voting tool built on Base. Create proposals, cast your vote onchain, and see real-time results. Fully decentralized, fully transparent.",
+    "iconUrl": "https://farcaster-voting-frame.vercel.app/icon.png",
+    "imageUrl": "https://farcaster-voting-frame.vercel.app/hero.png",
+    "homeUrl": "https://farcaster-voting-frame.vercel.app",
+    "splashImageUrl": "https://farcaster-voting-frame.vercel.app/splash.png",
+    "splashBackgroundColor": "#0052FF",
+    "screenshotUrls": [
+      "https://farcaster-voting-frame.vercel.app/screenshot.png"
+    ],
+    "primaryCategory": "developer-tools",
+    "tags": [
+      "voting",
+      "base",
+      "onchain",
+      "governance"
+    ],
+    "heroImageUrl": "https://farcaster-voting-frame.vercel.app/hero.png",
+    "tagline": "Vote onchain, transparently",
+    "ogTitle": "Base Voting Frame - Onchain Voting on Base",
+    "ogDescription": "Create proposals and cast your vote onchain. Fully decentralized, fully transparent. Built on Base.",
+    "ogImageUrl": "https://farcaster-voting-frame.vercel.app/hero.png"
+  }
+}
