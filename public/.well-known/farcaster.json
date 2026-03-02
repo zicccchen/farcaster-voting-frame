@@ -26,7 +26,7 @@
     ],
     "heroImageUrl": "https://farcaster-voting-frame.vercel.app/hero.png",
     "tagline": "Vote onchain, transparently",
-    "ogTitle": "Base Voting Frame - Onchain Voting on Base",
+    "ogTitle": "Base Voting Frame",
     "ogDescription": "Create proposals and cast your vote onchain. Fully decentralized, fully transparent. Built on Base.",
     "ogImageUrl": "https://farcaster-voting-frame.vercel.app/hero.png"
   }
