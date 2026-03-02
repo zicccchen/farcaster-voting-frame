@@ -3,7 +3,7 @@ require("dotenv").config();
 
 module.exports = {
   solidity: {
-    version: "0.8.20",
+    version: "0.8.31",
     settings: {
       optimizer: {
         enabled: true,
@@ -29,6 +29,12 @@ module.exports = {
       url: "https://mainnet.base.org",
       accounts: [process.env.PRIVATE_KEY],
       chainId: 8453
+    }
+  },
+  etherscan: {
+    apiKey: {
+      base: process.env.BASESCAN_API_KEY || "placeholder", // Base 主网
+      baseSepolia: process.env.BASESCAN_API_KEY || "placeholder" // Base 测试网
     }
   },
   paths: {

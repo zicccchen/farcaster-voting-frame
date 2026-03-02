@@ -13,7 +13,7 @@
     }
   ],
   "env": {
-    "VOTING_CONTRACT_ADDRESS": "0x78675fF0Bf530977e535f77B034CEe7D2a4fd4Ad",
+    "VOTING_CONTRACT_ADDRESS": "0x7d6Be832915a8064F898d34181A28E0C98a76354",
     "RPC_URL": "https://mainnet.base.org"
   }
 }
